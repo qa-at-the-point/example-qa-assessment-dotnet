@@ -2,6 +2,7 @@
 using Veriff.Models;
 
 namespace Veriff;
+
 public class Api
 {
     public readonly RestClient client;

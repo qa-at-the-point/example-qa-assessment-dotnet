@@ -3,11 +3,9 @@ using NUnit.Framework;
 
 namespace Veriff.Tests;
 
-public class ApiTests
+public class ApiTests : BaseApiTest
 {
-    Api api = new Api();
-
-    [Test]
+    [Test, Category("API")]
     public void Create_Session()
     {
         var response = api.CreateSession("Carlos Kidman", "en", "US", "PASSPORT");
@@ -16,7 +14,7 @@ public class ApiTests
         Assert.That(response.Data.Token, Is.Not.Null);
     }
 
-    [Test]
+    [Test, Category("API")]
     public void Get_Session_Config()
     {
         var session = api.CreateSession("张 Zhāng", "ch", "CH", "ID_CARD").Data;

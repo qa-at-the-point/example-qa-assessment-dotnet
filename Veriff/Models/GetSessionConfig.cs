@@ -32,7 +32,6 @@ public record GetSessionConfigResponse
     public object CopyStrings { get; set; }
 }
 
-
 public record InitData
 {
     [JsonPropertyName("integrationUrl")]

@@ -1,42 +1,19 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-
 namespace Veriff.Tests;
 
-public class UiTests
+public class UiTests : BaseUITest
 {
-    IWebDriver driver;
-    VeriffUI veriff;
-
-    [SetUp]
-    public void BeforeEach()
-    {
-        new DriverManager().SetUpDriver(new ChromeConfig());
-        driver = new ChromeDriver();
-        driver.Manage().Window.Maximize();
-        veriff = new VeriffUI(driver).Visit();
-    }
-
-    [TearDown]
-    public void AfterEach()
-    {
-        driver.Quit();
-    }
-
-    [Test]
-    public void Veriff_Me_with_Valid_Flow()
+    [Test, Category("UI")]
+    public void Launch_Veriff_with_valid_values_succeeds()
     {
         var launchVia = "Redirect";
-        veriff.LaunchVeriffWith("张 Zhāng", "Chinese", "China", "Passport", launchVia);
+        veriff.LaunchVeriffWith("张 Zhāng", "中文（简体)", "China", "Passport", launchVia);
         var qr = veriff.FindQRCode(launchVia);
         Assert.That(qr.Displayed, Is.True);
     }
 
-    [Test]
-    public void Veriff_with_Missing_Values()
+    [Test, Category("UI")]
+    public void Launch_veriff_with_missing_values_should_raise_error()
     {
         // Veriff seems to work even if there are errors or missing data and defaults to English.
         // This is a bug! What should we show the user instead?

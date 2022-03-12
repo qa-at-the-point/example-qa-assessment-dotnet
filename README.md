@@ -55,6 +55,49 @@ dotnet test
 
 > 💡 The terminal will show test results and summary once the Test Run is complete
 
+### Run Tests by Category
+
+The recommended way for running tests in this framework is by specifying the API or UI suite to execute.
+
+```bash
+# API Tests
+dotnet test --filter TestCategory=API
+```
+
+```bash
+# UI
+dotnet test --filter TestCategory=UI
+```
+
+> 💡 An `index.html` Extent Report file is generated at the Workspace Root which you can view in the browser!
+
+For example:
+
+![Example Extent Report for UI Tests (Dark) index.html](./example_ui_dark_index.html.png)
+
+![Example Extent Report for API Tests (Light) index.html](./example_api_light_index.html.png)
+
+### Generate XML Report
+
+```bash
+dotnet test --filter <expression> -l:"trx;LogFileName=results.xml" -r
+```
+
+> 💡 A `results.xml` file is created at the Worspace Root to be used by CI (like Jenkins!)
+
+## Known Limitations
+
+With a 2-hour time limit of exploring, designing, and programming, and 1 hour of documentation, I didn't have time to implement everything I'd normally do. Imagine if I was working full-time!
+
+> 😎 Hire me and I'll have full-time to design and implement even better solutions!
+
+- You cannot run all tests (API and UI) at the same time because of the current `BaseTest` setup
+- UI Tests cannot be run in parallel as they depend on the same `IWebDriver` reference
+- API and UI Test Results are separated instead of being combined in a single report
+- Only `Chrome` is being tested, but that _is within scope of the assignment_
+- Some values are hard-coded that probably shouldn't be. For example, the request URLs in `Veriff.Api`
+- `VeriffUi.FindQRCode()` looks for the text `"QR"` on the page which won't work for _every_ language
+
 ## Submit a Bug or Request
 
-If you've found an bug or you have an idea or feature request, please create an issue on the [Issues Tab](https://github.com/qa-at-the-point/example-qa-assessment/issues)
+If you've found an bug or you have an idea or feature request, please create an issue on the [Issues Tab](https://github.com/qa-at-the-point/example-qa-assessment-dotnet/issues)
