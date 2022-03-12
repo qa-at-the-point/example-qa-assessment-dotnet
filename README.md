@@ -97,6 +97,7 @@ With a 2-hour time limit of exploring, designing, and programming, and 1 hour of
 - Only `Chrome` is being tested, but that _is within scope of the assignment_
 - Some values are hard-coded that probably shouldn't be. For example, the request URLs in `Veriff.Api`
 - `VeriffUi.FindQRCode()` looks for the text `"QR"` on the page which won't work for _every_ language
+- Tests are not parameterized to more closely match my [veriff.feature](./veriff.feature) scenarios
 
 ## Submit a Bug or Request
 
