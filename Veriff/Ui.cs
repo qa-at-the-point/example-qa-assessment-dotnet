@@ -23,7 +23,9 @@ public class VeriffUI
     public IWebElement EnterFullName(string fullName)
     {
         var fullNameField = _wait.Until(d => d.FindElement(By.CssSelector("[name='name']")));
-        fullNameField.Clear();
+        // Clear full name field
+        var js = (IJavaScriptExecutor)_driver;
+        js.ExecuteScript("arguments[0].value = ''", fullNameField);
         fullNameField.SendKeys(fullName);
         return fullNameField;
     }
